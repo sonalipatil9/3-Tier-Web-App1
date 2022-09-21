@@ -1,11 +1,11 @@
-
-param ASP_Location string
-param ASP_Name string
+//App Service Plan
+param aspLocation string
+param aspName string
 
 
 resource azbicepASP1 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: ASP_Name//'app-dev-southcentralus-aSP1'
-  location: ASP_Location//resourceGroup().location //
+  name: aspName//'app-dev-southcentralus-aSP1'
+  location: aspLocation//resourceGroup().location //
   sku: {
     name: 'f1'
     capacity: 1

@@ -1,12 +1,11 @@
-//targetScope = 'subscription'
-param Sql_Ser_Name string //= 'sql-sqlserver-dev-001'
-param location string //= 'southcentralus'
-param Sql_Db_Name string //='sqldb-sqluser-dev'
-
-
+// SQL Database
+param sqlSerName string 
+param sqlDbName string 
+param location string 
 
 resource azsqlserver 'Microsoft.Sql/servers@2014-04-01' ={
-  name: Sql_Ser_Name //Sql_Ser_Name
+  //parent: vnet
+  name: sqlSerName 
   //scope:az.resourceGroup(resourceGroup())
   location: location
   properties: {
@@ -17,7 +16,7 @@ resource azsqlserver 'Microsoft.Sql/servers@2014-04-01' ={
 
 resource sqlServerDatabase 'Microsoft.Sql/servers/databases@2014-04-01' = {
   parent: azsqlserver
-  name: Sql_Db_Name
+  name: sqlDbName
   location: location
   properties: {
     collation: 'SQL_Latin1_General_CP1_CI_AS'
